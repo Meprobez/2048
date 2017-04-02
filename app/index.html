@@ -15,12 +15,16 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>	
 	
 <!-- for development Files must be loaded separately, don't forget to add cat to bower_components.min.js from this file in PACKAGE.JSON-->
-	<script src="static/bundle.min.js"></script>
-	<link rel="stylesheet" href="static/bundle.css" />
+	<script src="main/app.config.js"></script>
+	<script src="main/app.run.js"></script>
+	<script src="main/app.controller.js"></script>
+	<script src="main/app.gridService.service.js"></script>
+	<script src="main/app.gameManager.service.js"></script>
 	
 <head>
 <head>
-<body ng-app="">
+<body ng-app="2048" ng-controller="appController as $ctrl">
+<div class="game" ng-include="main/app.html"></div>
  <!--[if lte IE 9]>
             <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience and security.</p>
         <![endif]-->

@@ -28,7 +28,7 @@
     "presets":[ ["env",{ "targets": { "uglify": true  } }] ]
 	},
   "scripts": {
-    "postinstall": "bower install && npm run build",
+    "postinstall": "bower install && npm run watch-js",
 	
     "update-deps": "npm update",
     "postupdate-deps": "bower update",

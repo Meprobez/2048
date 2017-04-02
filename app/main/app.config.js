@@ -1,7 +1,7 @@
 'use strict';
 
 // Define your Application Module module
-angular.module('phonecatalog', [
+angular.module('2048', [
   'ngAnimate',
   'ngRoute',
   'ui.router',
