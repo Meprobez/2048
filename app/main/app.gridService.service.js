@@ -7,8 +7,9 @@ function gridService()
   var self = this;
   self.fieldSize = 4;
   var service = {
-  	returnNewField:returnNewField,
-	saveField:saveField
+  	returnNewGrid:returnNewGrid,
+	saveGrid:saveGrid,
+	getGrid:getGrid
   };   
   return service;
 
@@ -32,22 +33,7 @@ function createGrid()
 		id++;
 	};
 }
-function createField(grid)
-{
-	self.field = [];
-	for(var i=0;i<self.fieldSize;i++)
-	{
-		self.field[i] = [];
-		for(var j=0; j<self.fieldSize;j++)
-		{
-			let step = i*self.fieldSize;
-			console.log(step);
-			self.field[i].push(grid[j+step]);
-		}
-	}
-	console.log(self.field);
-	return self.field;
-}
+
 function cellGenerator(grid,movesCounter)
 {
 	if(movesCounter)
@@ -69,18 +55,22 @@ function cellGenerator(grid,movesCounter)
 
 }
 
-function returnNewField()
+function returnNewGrid()
 {
 	createGrid();
 	cellGenerator(self.grid,0);
-    createField(self.grid);
-    console.log(self.field);
-	return self.field;
+    
+	return self.grid;
 }
 
-function saveField(field)
+function saveGrid(grid)
 {
-	self.field = field;
+	self.grid = grid;
+}
+
+function getGrid()
+{
+	return self.grid;
 }
 function getRandomInt(min, max) 
 {
