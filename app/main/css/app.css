@@ -308,3 +308,36 @@ a
 
 .cell2048 {
   background: #B60022; }
+/*SCSS File*/
+.cell2 {
+  background: #EEE4DA; }
+
+.cell4 {
+  background: #EAE0C8; }
+
+.cell8 {
+  background: #F59563; }
+
+.cell16 {
+  background: #3399ff; }
+
+.cell32 {
+  background: #ffa333; }
+
+.cell64 {
+  background: #cef030; }
+
+.cell128 {
+  background: #E8D8CE; }
+
+.cell256 {
+  background: #990303; }
+
+.cell512 {
+  background: #6BA5DE; }
+
+.cell1024 {
+  background: #DCAD60; }
+
+.cell2048 {
+  background: #B60022; }

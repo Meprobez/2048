@@ -1,14 +1,19 @@
-angular.module('game', [])
-.service('gameManager', function() {
-  // Create a new game
-  this.newGame = function() {};
-  // Handle the move action
-  this.move = function() {};
-  // Update the score
-  this.updateScore = function(newScore) {};
-  // Are there moves left?
-  this.movesAvailable = function() {
-    return gridService.anyCellsAvailable() || 
-            gridService.tileMatchesAvailable();
+angular.module('2048')
+.factory('gameManager', gameManager);
+
+gameManager.$inject = ['gridService'];
+function gameManager()
+{
+  var self = this;
+  var service = {
+    makingMove:makingMove
   };
-});
+  return service;
+
+  function makingMove(key, field)
+  {
+    console.log("inGameManager");
+    console.log(key);
+    console.log(field);
+  }
+}

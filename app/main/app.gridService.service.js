@@ -5,13 +5,10 @@ angular.module('2048')
 function gridService() 
 {
   var self = this;
-
-  self.grid   = []; //x4
-  self.tiles  = []; //x4
-  
+  self.fieldSize = 4;
   var service = {
-    createGrid:createGrid,
-    returnNewGrid:returnNewGrid
+  	returnNewField:returnNewField,
+	saveField:saveField
   };   
   return service;
 
@@ -35,7 +32,22 @@ function createGrid()
 		id++;
 	};
 }
-
+function createField(grid)
+{
+	self.field = [];
+	for(var i=0;i<self.fieldSize;i++)
+	{
+		self.field[i] = [];
+		for(var j=0; j<self.fieldSize;j++)
+		{
+			let step = i*self.fieldSize;
+			console.log(step);
+			self.field[i].push(grid[j+step]);
+		}
+	}
+	console.log(self.field);
+	return self.field;
+}
 function cellGenerator(grid,movesCounter)
 {
 	if(movesCounter)
@@ -56,16 +68,25 @@ function cellGenerator(grid,movesCounter)
 	}
 
 }
-function returnNewGrid()
+
+function returnNewField()
 {
 	createGrid();
-	cellGenerator(self.grid,0)
-    return self.grid;
+	cellGenerator(self.grid,0);
+    createField(self.grid);
+    console.log(self.field);
+	return self.field;
 }
 
-function getRandomInt(min, max) {
+function saveField(field)
+{
+	self.field = field;
+}
+function getRandomInt(min, max) 
+{
   min = Math.ceil(min);
   max = Math.floor(max);
   return Math.floor(Math.random() * (max - min)) + min;
 }
+
 }
