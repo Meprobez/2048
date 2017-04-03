@@ -22,20 +22,13 @@
 	<script src="main/app.controller.js"></script>
 	<script src="main/app.gridService.service.js"></script>
 	<script src="main/app.gameManager.service.js"></script>
+	<link rel="stylesheet" href="main/css/app.css" />
 	
-<head>
 <head>
 <body ng-app="2048" ng-controller="appController as $ctrl">
-<div class="game" ng-include="main/app.html"></div>
- <!--[if lte IE 9]>
-            <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience and security.</p>
-        <![endif]-->
-
-        <!-- Add your site or application content here -->
-		
-	<p>This is the Starting Point of my Application</p>
-	
-	<!-- Google Analytics: change UA-XXXXX-Y to be your site's ID. -->
+<ng-include src="$ctrl.template.url" class="game" ></ng-include>
+ 
+<!-- Google Analytics: change UA-XXXXX-Y to be your site's ID. -->
         <script>
             window.ga=function(){ga.q.push(arguments)};ga.q=[];ga.l=+new Date;
             ga('create','UA-XXXXX-Y','auto');ga('send','pageview')

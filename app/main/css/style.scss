@@ -1,0 +1,37 @@
+
+/*SCSS File*/
+@function power ($x, $n) {
+  $ret: 1;
+ 
+  @if $n >= 0 {
+    @for $i from 1 through $n {
+      $ret: $ret * $x;
+    } 
+  } @else {
+    @for $i from $n to 0 {
+      $ret: $ret / $x;
+    }
+  }
+ 
+  @return $ret;
+}
+$colors:  #EEE4DA, // 2
+          #EAE0C8, // 4
+          #F59563, // 8
+          #3399ff, // 16
+          #ffa333, // 32
+          #cef030, // 64
+          #E8D8CE, // 128
+          #990303, // 256
+          #6BA5DE, // 512
+          #DCAD60, // 1024
+          #B60022; // 2048
+
+@for $i from 1 through length($colors)
+{
+  .cell#{power(2,$i)}
+  {
+    background: nth($colors, $i);
+  }
+}
+

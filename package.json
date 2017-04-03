@@ -3,7 +3,7 @@
   "private": true,
   "version": "0.0.0",
   "description": "My realization of 2048 game",
-  "repository": "https://github.com/Meprobez/my-angular-phone-catalog",
+  "repository": "https://github.com/Meprobez/2048",
   "license": "MIT",
   "devDependencies": {
     "bower": "^1.8.0",
@@ -22,7 +22,8 @@
 	"uglify-js":"2.8.16",
 	"minifier":"0.8.1",
 	"babel-cli":"6.24.0",
-	"babel-preset-env":"1.3.2"
+	"babel-preset-env":"1.3.2",
+	"node-sass":"4.5.2"
   },
   "babel": {
     "presets":[ ["env",{ "targets": { "uglify": true  } }] ]
@@ -50,9 +51,11 @@
     "babel-build": "babel ./app/*/*.js -d ./babeled && babel ./app/*/*/*.js -d ./babeled",
 	"uglify": "uglifyjs ./babeled/app/core/spell-module/*.js -c -m  --reserve-domprops  -o ./app/static/list/spell.min.js",
 	"build-js": "cat ./app/static/list/spell.min.js >> ./app/static/list/bower_components.min.js",
+	
+	"sass-css":"node-sass ./app/main/css/style.scss  ./app/main/css/style.css && cat ./app/main/css/style.css >> ./app/main/css/app.css",
 	"build-css": "postcss -u autoprefixer -r ./app/*/*/*.css && cat ./app/*/*/*.css > ./app/static/bundle.css && minify ./app/static/bundle.css -o ./app/static/bundle.min.css && cat ./bower_components/bootstrap/dist/css/*.min.css >> ./app/static/bundle.min.css",
    
-    "build": "npm run watch-js && npm run babel-build && npm run uglify && npm run build-js",
+    "build": "npm run watch-js && npm run babel-build && npm run uglify && npm run build-js && npm run sass-css",
 	
     "update-index-async": "node -e \"var fs=require('fs'),indexFile='app/index-async.html',loaderFile='app/bower_components/angular-loader/angular-loader.min.js',loaderText=fs.readFileSync(loaderFile,'utf-8').split(/sourceMappingURL=angular-loader.min.js.map/).join('sourceMappingURL=bower_components/angular-loader/angular-loader.min.js.map'),indexText=fs.readFileSync(indexFile,'utf-8').split(/\\/\\/@@NG_LOADER_START@@[\\s\\S]*\\/\\/@@NG_LOADER_END@@/).join('//@@NG_LOADER_START@@\\n'+loaderText+'    //@@NG_LOADER_END@@');fs.writeFileSync(indexFile,indexText);\""
   }
