@@ -1,7 +1,9 @@
 'use strict';
 angular.module('2048')
-.run(['$rootScope','$history',function($rootScope,$history)
+.run(run);
+
+run.$inject = ['$rootScope','$history','gridService','gameManager'];
+function run($rootScope,$history,gridService,gameManager)
 {
 	$history.historyMaintain($rootScope);
-		
-}])
+}

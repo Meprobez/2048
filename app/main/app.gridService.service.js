@@ -35,21 +35,24 @@ function cellGenerator(grid,movesCounter)
 {
 	if(movesCounter)
 	{
-
+		let num = getRandomIntInclusive(1, 16);
+		while(grid[num].number)
+		{
+			num = getRandomIntInclusive(1, 16);
+		};
+		grid[num].number = 2;
 	}
 	else
 	{
-		let num1 = getRandomInt(1, 17);
-		let num2 = getRandomInt(1, 17);
+		let num1 = getRandomIntInclusive(1, 16);
+		let num2 = getRandomIntInclusive(1, 16);
 		while(num1===num2)
 		{
-			num2 = getRandomInt(1, 17);
+			num2 = getRandomIntInclusive(1, 16);
 		};
 		grid[num1].number = 2;
 		grid[num2].number = 2;
-		console.log(grid);
 	}
-
 }
 
 function returnNewGrid()
@@ -67,13 +70,14 @@ function saveGrid(grid)
 
 function getGrid()
 {
+	cellGenerator(self.grid,1);
 	return self.grid;
 }
-function getRandomInt(min, max) 
-{
+
+function getRandomIntInclusive(min, max) {
   min = Math.ceil(min);
   max = Math.floor(max);
-  return Math.floor(Math.random() * (max - min)) + min;
+  return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
 }

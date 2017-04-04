@@ -6,6 +6,7 @@ function appController($scope,gridService,gameManager)
 {
 	var self = this;
 	self.$onInit = onInit;
+	self.$postLink = postLink;
 	self.grid = [];
 	self.fieldSize = 4;
 	self.template = { url: 'main/app.html' };
@@ -16,17 +17,24 @@ function appController($scope,gridService,gameManager)
 	
 	function onInit()
 	{
-		
 		self.grid = gridService.returnNewGrid();
 		self.createField(self.grid);
+	}
+
+	function postLink()
+	{
 		addEventListener('keydown', function(event)
 		{
-			event.preventDefault();
-			gridService.saveGrid(self.grid);
+		 event.preventDefault();
+		 if(event.key=="ArrowUp"||event.key=="ArrowDown"||event.key=="ArrowLeft"||event.key=="ArrowRight")
+		 {
 			gameManager.makingMove(event.key,self.grid);
-		})
-	};
-	
+			self.grid = gridService.getGrid();
+			self.createField(self.grid);
+			$scope.$apply();
+		};})
+	}
+
 	function newGame()
 	{
 		if(self.score>self.best)
