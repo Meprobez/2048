@@ -14,7 +14,9 @@ function appController($scope,gridService,gameManager)
 	self.best = 0;
 	self.newGame = newGame;
 	self.createField = createField;
-	
+	self.gameOver = false;
+	self.gameWon = false;
+
 	function onInit()
 	{
 		self.grid = gridService.returnNewGrid();
@@ -26,12 +28,31 @@ function appController($scope,gridService,gameManager)
 		addEventListener('keydown', function(event)
 		{
 		 event.preventDefault();
+		 self.gameOver = false;
+		 self.gameWon = false;
 		 if(event.key=="ArrowUp"||event.key=="ArrowDown"||event.key=="ArrowLeft"||event.key=="ArrowRight")
 		 {
 			gameManager.makingMove(event.key,self.grid);
 			self.grid = gridService.getGrid();
-			self.createField(self.grid);
-			$scope.$apply();
+			if(self.grid === true)
+			{
+				self.gameWon = true;
+				self.score = gameManager.getScore();
+				self.newGame();
+				$scope.$apply();
+			}
+			else if(self.grid)
+			{
+				self.createField(self.grid);
+				self.score = gameManager.getScore();
+				$scope.$apply();
+			}
+			else
+			{
+				self.gameOver = true;
+				self.newGame();
+				$scope.$apply();
+			}
 		};})
 	}
 
@@ -40,6 +61,7 @@ function appController($scope,gridService,gameManager)
 		if(self.score>self.best)
 			self.best = self.score;
 		self.score = 0;
+		gameManager.resetScore();
 		self.grid =  gridService.returnNewGrid();
 		self.createField(self.grid);
 	}

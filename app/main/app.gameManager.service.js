@@ -5,17 +5,20 @@ gameManager.$inject = ['gridService'];
 function gameManager(gridService)
 {
   var self = this;
-  self.fieldSize = 4;
+  self.score = 0;
+  self.best = 0;
   var service = {
-    makingMove:makingMove
+    makingMove:makingMove,
+    getScore:getScore,
+    resetScore:resetScore
   };
   return service;
 
   function makingMove(key, grid)
   {
     console.log("inGameManager: ", key);
-    var move = direction(key);  
-    var boundaries = defineBounderies(move), boundCount = 0,index,boundary;
+    var move = direction(key), diffrentField = false,win = false;  
+    var boundaries = defineBounderies(move), boundCount = 0,index,boundary
     for(var i = move.start; i!=move.end; i+=move.inc)
     {
       boundary = boundaries[boundCount];
@@ -32,7 +35,11 @@ function gameManager(gridService)
                     if(grid[dir+step].number===grid[dir].number) //if there is number and they equal
                     {
                       grid[dir+step].number+=grid[dir].number;
+                      if(grid[dir+step].number===2048)
+                        win = true;
+                      self.score += grid[dir+step].number;
                       grid[dir].number = null;
+                      diffrentField = true;
                       dir+=step;
                     }
                     else break; //numbers not equal, we stop moving
@@ -41,6 +48,7 @@ function gameManager(gridService)
                 {
                     grid[dir+step].number = grid[dir].number;
                     grid[dir].number = null;
+                    diffrentField = true;
                     dir+=step;
                 }
           
@@ -50,9 +58,29 @@ function gameManager(gridService)
       }
       boundCount++;
     };
-    gridService.saveGrid(grid);
     
-    return grid;
+    if(diffrentField)
+    {
+      if(win)
+      {
+        gridService.saveGrid(true);
+        return;
+      }
+      grid = gridService.cellGenerator(grid,1);
+    }
+    else
+    {
+      let lose = true, win = false;
+      for(var c=1;c<=16;c++)
+        if(!grid[c].number)
+          lose = false;
+      if(lose)
+      {
+        gridService.saveGrid(null);
+        return;
+      }
+    }
+    gridService.saveGrid(grid);
   }
 
     function direction(key)
@@ -97,6 +125,15 @@ function gameManager(gridService)
           boundaries.push(move.start*move.start+i*move.inc*move.size);
       return boundaries;
     }
-      
+
+    function getScore()
+    {
+      return self.score;
+    }  
+
+    function resetScore()
+    {
+      self.score = 0;
+    }  
   
 }

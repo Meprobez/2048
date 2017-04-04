@@ -234,8 +234,8 @@ textarea {
 .cell
 {
   border:5px solid grey;
-  width:100px;
-  height:100px;
+  width:120px;
+  height:120px;
   text-align:center;
   font-weight:700;
   font-size:4em;
@@ -274,4 +274,19 @@ a
 {
   text-decoration:none;
   color:#2f1f1f
+}
+.game-over, .game-won
+{
+  position:relative;
+  left:-14.7em;
+  top:8.5em;
+  font-size:2em;
+  font-weight:700;
+  min-width:500px;
+  color:red;
+}
+
+.game-won
+{
+  color:green;
 }

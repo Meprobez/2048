@@ -9,7 +9,8 @@ function gridService()
   var service = {
   	returnNewGrid:returnNewGrid,
 	saveGrid:saveGrid,
-	getGrid:getGrid
+	getGrid:getGrid,
+	cellGenerator:cellGenerator
   };   
   return service;
 
@@ -53,6 +54,7 @@ function cellGenerator(grid,movesCounter)
 		grid[num1].number = 2;
 		grid[num2].number = 2;
 	}
+	return grid;
 }
 
 function returnNewGrid()
@@ -70,7 +72,6 @@ function saveGrid(grid)
 
 function getGrid()
 {
-	cellGenerator(self.grid,1);
 	return self.grid;
 }
 
