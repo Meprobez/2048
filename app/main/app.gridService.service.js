@@ -19,13 +19,14 @@ function createGrid()
   self.grid = [];
   self.grid.push('Head');
   self.cell = {
-			number:null	
+			number:null
 		};
   var id = 1;
   for(var i=1; i<=4;i++)
 	for(var j=1; j<=4; j++)
 	{
 		self.cell.id = id;
+		self.cell.merged = false;
 		let cell = angular.copy(self.cell)
 		self.grid.push(cell);
 		id++;

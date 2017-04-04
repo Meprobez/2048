@@ -32,9 +32,10 @@ function gameManager(gridService)
            {
                 if(grid[dir+step].number) //if there is number in next step
                 {
-                    if(grid[dir+step].number===grid[dir].number) //if there is number and they equal
+                    if(grid[dir+step].number===grid[dir].number && grid[dir].merged!==true && grid[dir+step].merged!==true) //if there is number and they equal
                     {
                       grid[dir+step].number+=grid[dir].number;
+                      grid[dir+step].merged = true;
                       if(grid[dir+step].number===2048)
                         win = true;
                       self.score += grid[dir+step].number;
@@ -58,7 +59,7 @@ function gameManager(gridService)
       }
       boundCount++;
     };
-    
+    console.log(grid);
     if(diffrentField)
     {
       if(win)
@@ -66,6 +67,8 @@ function gameManager(gridService)
         gridService.saveGrid(true);
         return;
       }
+      for(var c=1;c<=16;c++)
+        grid[c].merged = false;
       grid = gridService.cellGenerator(grid,1);
     }
     else
