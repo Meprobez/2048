@@ -52,7 +52,7 @@
 	"uglify": "uglifyjs ./babeled/app/core/spell-module/*.js -c -m  --reserve-domprops  -o ./app/static/list/spell.min.js",
 	"build-js": "cat ./app/static/list/spell.min.js >> ./app/static/list/bower_components.min.js",
 	
-	"sass-css":"node-sass ./app/main/css/style.scss  ./app/main/css/style.css && cat ./app/main/css/style.css >> ./app/main/css/app.css",
+	"sass-css":"node-sass ./app/main/css/style.scss  ./app/main/css/style.css ",
 	"build-css": "postcss -u autoprefixer -r ./app/*/*/*.css && cat ./app/*/*/*.css > ./app/static/bundle.css && minify ./app/static/bundle.css -o ./app/static/bundle.min.css && cat ./bower_components/bootstrap/dist/css/*.min.css >> ./app/static/bundle.min.css",
    
     "build": "npm run watch-js && npm run babel-build && npm run uglify && npm run build-js && npm run sass-css",

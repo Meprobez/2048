@@ -22,8 +22,6 @@ function appController($scope,gridService,gameManager)
 		addEventListener('keydown', function(event)
 		{
 			event.preventDefault();
-			console.log(event.key);
-			console.log(self.field);
 			gridService.saveGrid(self.grid);
 			gameManager.makingMove(event.key,self.grid);
 		})
@@ -41,17 +39,15 @@ function appController($scope,gridService,gameManager)
 	function createField(grid)
 	{
 	self.field = [];
-	for(var i=0;i<self.fieldSize;i++)
+	for(var i=1;i<=self.fieldSize;i++)
 	{
 		self.field[i] = [];
-		for(var j=0; j<self.fieldSize;j++)
+		for(var j=1; j<=self.fieldSize;j++)
 		{
-			let step = i*self.fieldSize;
-			console.log(step);
+			let step = (i-1)*self.fieldSize;
 			self.field[i].push(grid[j+step]);
 		}
 	}
-	console.log(self.field);
 	return self.field;
 }
 }

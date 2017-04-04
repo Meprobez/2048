@@ -16,18 +16,15 @@ function gridService()
 function createGrid()
 {
   self.grid = [];
+  self.grid.push('Head');
   self.cell = {
-			x:0,
-			y:0,
-		    number:null	
+			number:null	
 		};
-  var id = 0;
-  for(var i=0; i<4;i++)
-	for(var j=0; j<4; j++)
+  var id = 1;
+  for(var i=1; i<=4;i++)
+	for(var j=1; j<=4; j++)
 	{
 		self.cell.id = id;
-		self.cell.y = i;
-		self.cell.x = j;
 		let cell = angular.copy(self.cell)
 		self.grid.push(cell);
 		id++;
@@ -42,11 +39,11 @@ function cellGenerator(grid,movesCounter)
 	}
 	else
 	{
-		let num1 = getRandomInt(0, 16);
-		let num2 = getRandomInt(0, 16);
+		let num1 = getRandomInt(1, 17);
+		let num2 = getRandomInt(1, 17);
 		while(num1===num2)
 		{
-			num2 = getRandomInt(0, 16);
+			num2 = getRandomInt(1, 17);
 		};
 		grid[num1].number = 2;
 		grid[num2].number = 2;
