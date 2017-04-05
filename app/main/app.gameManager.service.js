@@ -59,7 +59,6 @@ function gameManager(gridService)
       }
       boundCount++;
     };
-    console.log(grid);
     if(diffrentField)
     {
       if(win)
