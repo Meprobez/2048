@@ -54,7 +54,7 @@
 	"build-js": "cat ./app/static/list/spell.min.js >> ./app/static/list/bower_components.min.js",
 	
 	"sass-css":"node-sass ./app/main/css/sass/sass.css  ./app/main/css/style.css && minify ./bower_components/normalize.css/normalize.css -o ./app/static/list/normalize.min.css",
-	"build-css": "npm run sass-css && postcss -u autoprefixer -r ./app/*/*/*.css && cat ./bower_components/*/dist/css/bootstrap.min.css > ./app/static/bundle.min.css && cat ./bower_components/*/dist/css/*.min.css >> ./app/static/bundle.min.css",
+	"build-css": "npm run sass-css && postcss -u autoprefixer -r ./app/*/*/*.css && cat ./bower_components/*/dist/css/bootstrap.min.css > ./app/static/bundle.min.css && cat ./bower_components/tether/dist/css/*.min.css >> ./app/static/bundle.min.css",
    
     "build": "npm run watch-js && npm run babel-build && npm run uglify && npm run build-js && npm run build-css",
 		
