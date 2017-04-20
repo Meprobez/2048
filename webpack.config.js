@@ -73,7 +73,7 @@ module.exports = {
 				cssProcessor: require('cssnano'),
 				cssProcessorOptions: { 
 					discardComments: {removeAll: true }, 
-					map: { inline: true } 
+					map: { inline: true } //Enables sourceMaps for minified CSS
 				},
 				canPrint: true
 		}),
