@@ -11,5 +11,3 @@ bower_components/
 babeled/
 *.min.js
 *.min.css
-bundle.js
-bundle.css

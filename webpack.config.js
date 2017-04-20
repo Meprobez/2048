@@ -16,10 +16,12 @@ module.exports = {
   },
     output: {
         path: path.resolve(__dirname, './app/static/'),
-		//publicPath: "./app/static/",
+		//Setting publicPath to an absolute url (including domain) resulted in urls (and source maps) being generated properly 
+		publicPath: "http://localhost:9000/app/static/", 
         filename: "[name].min.js",
     	chunkFilename: "[name].[chunkhash].js"
     },
+	devtool:"eval-source-map", // cheap source map options don't work with the plugin!
     module: {
         loaders: [
             {
@@ -69,7 +71,10 @@ module.exports = {
 		new OptimizeCssAssetsPlugin({
 				assetNameRegExp: /\.css$/g,
 				cssProcessor: require('cssnano'),
-				cssProcessorOptions: { discardComments: {removeAll: true } },
+				cssProcessorOptions: { 
+					discardComments: {removeAll: true }, 
+					map: { inline: true } 
+				},
 				canPrint: true
 		}),
 		new webpack.optimize.UglifyJsPlugin({
@@ -78,7 +83,9 @@ module.exports = {
 			},
 			mangle: {
 				except: ['$super', '$', 'exports', 'require']
-		}}),
+			},
+			sourceMap:true
+		}),
 		new webpack.HotModuleReplacementPlugin(),
     	// enable HMR globally
 
