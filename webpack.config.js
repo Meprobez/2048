@@ -1,3 +1,4 @@
+/* Webpack All-in config file */
 var path = require('path');
 var ExtractTextPlugin = require("extract-text-webpack-plugin");
 var webpack = require('webpack');
@@ -9,11 +10,11 @@ var ChunkManifestPlugin = require("chunk-manifest-webpack-plugin");
 var WebpackChunkHash = require("webpack-chunk-hash");
 
 module.exports = {
-	context:__dirname,
-    entry: {
-    bundle: "./app/bundle.js",
-    vendor:"./app/vendor.js",
-  },
+		context:__dirname,
+    	entry: {
+    	bundle: "./app/bundle.js",
+    	vendor:"./app/vendor.js",
+  	},
     output: {
         path: path.resolve(__dirname, './app/static/'),
 		//Setting publicPath to an absolute url (including domain) resulted in urls (and source maps) being generated properly 
@@ -21,15 +22,13 @@ module.exports = {
         filename: "[name].min.js",
     	chunkFilename: "[name].[chunkhash].js"
     },
-	devtool:"eval-source-map", // cheap source map options don't work with the plugin!
+	devtool:"source-map", // cheap source map options don't work with the plugin!
     module: {
         loaders: [
             {
 				test: /\.js$/,
 				exclude: /(node_modules|bower_components)/,
-				use: {
-						loader:'babel-loader?presets[]=env'
-				}
+				use: 'babel-loader?presets[]=env'
 			},
 			{
                 test: /\.css$/,
@@ -73,7 +72,7 @@ module.exports = {
 				cssProcessor: require('cssnano'),
 				cssProcessorOptions: { 
 					discardComments: {removeAll: true }, 
-					map: { inline: true } //Enables sourceMaps for minified CSS
+					map: { inline: false } //Enables sourceMaps for minified CSS
 				},
 				canPrint: true
 		}),
@@ -110,5 +109,5 @@ module.exports = {
 		port: 9000,
 		stats:"minimal",
 		hot:true
-}
+	}
 }

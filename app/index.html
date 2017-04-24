@@ -1,7 +1,7 @@
 <!doctype html>
 <html>
 <head>
-	<title></title>
+	<title>2048</title>
     
     <meta charset="utf-8"/>
 	<meta http-equiv="x-ua-compatible" content="ie=edge">
@@ -13,15 +13,14 @@
 	
 	<script src="https://cdn.polyfill.io/v2/polyfill.min.js"></script>
 	
-<!-- for development Files must be loaded separately, don't forget to add cat to bower_components.min.js from this file in PACKAGE.JSON-->
+<!-- for development Files must be loaded separately, only vendor Files come as Bundle -->
 	<script type="text/javascript" src="static/vendor.min.js"></script>
-	
 	<link rel="stylesheet" href="static/vendor.min.css" />
-	
+
 	<script type="text/javascript" src="static/bundle.min.js"></script>
 	<link rel="stylesheet" href="static/bundle.min.css" />
 	
-<head>
+</head>
 <body ng-app="2048" ng-controller="appController as $ctrl">
 	<ng-include src="$ctrl.template.url" class="game"  ng-keydown=></ng-include>
 

@@ -1,9 +1,11 @@
+"use strict";
 angular.module('2048')
 .controller('appController', appController);
 
 appController.$inject = ['$scope','gridService','gameManager'];
 function appController($scope,gridService,gameManager)
 {
+	
 	var self = this;
 	self.$onInit = onInit;
 	self.$postLink = postLink;
@@ -16,7 +18,7 @@ function appController($scope,gridService,gameManager)
 	self.createField = createField;
 	self.gameOver = false;
 	self.gameWon = false;
-
+	
 	function onInit()
 	{
 		self.grid = gridService.returnNewGrid();
@@ -37,14 +39,15 @@ function appController($scope,gridService,gameManager)
 			if(self.grid === true)
 			{
 				self.gameWon = true;
-				self.score = gameManager.getScore();
+				self.score =	gameManager.getScore();
 				self.newGame();
 				$scope.$apply();
+				
 			}
 			else if(self.grid)
 			{
 				self.createField(self.grid);
-				self.score = gameManager.getScore();
+				self.score =	gameManager.getScore();
 				$scope.$apply();
 			}
 			else
